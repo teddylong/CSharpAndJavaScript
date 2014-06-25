@@ -22,7 +22,6 @@
 <body>
     <form id="form1" runat="server">
         <div id="DataTableDiv" style="margin-left: auto; margin-right: auto; width: 700px;">
-            <h2>DataGrid</h2>
             <div style="margin: 20px 0;"></div>
             <table class="easyui-datagrid" title="DataGrid" style="width: 700px; height: 250px"
                 data-options="singleSelect:true,collapsible:true,url:'Data.ashx?type=GetUser'">
@@ -45,6 +44,28 @@
             <div title="Hotel" style="padding: 10px">
             </div>
             <div title="Car" style="padding: 10px">
+            </div>
+            <div title="Corp" style="padding: 10px">
+            </div>
+            <div title="NB" style="padding: 10px">
+            </div>
+            <div title="Vacations" style="padding: 10px">
+            </div>
+            <div title="PF" style="padding: 10px">
+            </div>
+            <div title="YOU" style="padding: 10px">
+            </div>
+            <div title="Cruise" style="padding: 10px">
+            </div>
+            <div title="Intl" style="padding: 10px">
+            </div>
+            <div title="TTD" style="padding: 10px">
+            </div>
+            <div title="Taocan" style="padding: 10px">
+            </div>
+            <div title="Train" style="padding: 10px">
+            </div>
+            <div title="HT" style="padding: 10px">
             </div>
         </div>
         <div id="container" style="margin-left: auto; margin-right: auto; min-width: 250px; height: 300px; max-width: 900px;"></div>
