@@ -10,28 +10,45 @@
     <link rel="stylesheet" type="text/css" href="jQueryEasy/demo.css" />
     <script type="text/javascript" src="jQueryEasy/jquery.min.js"></script>
     <script type="text/javascript" src="jQueryEasy/jquery.easyui.min.js"></script>
-
+    <script type="text/javascript" src="HighChart/highcharts.js"></script>
+    <script type="text/javascript" src="http://code.highcharts.com/modules/exporting.js"></script>
+    <script type="text/javascript" src="jQueryEasy/demo.js"></script>
+    <%--<script type="text/javascript">
+        $(function(){
+           
+        });
+    </script>--%>
 </head>
 <body>
     <form id="form1" runat="server">
-        <div>
-            <h2>Basic DataGrid</h2>
-            
+        <div id="DataTableDiv" style="margin-left: auto; margin-right: auto; width: 700px;">
+            <h2>DataGrid</h2>
             <div style="margin: 20px 0;"></div>
-
-            <table class="easyui-datagrid"  title="Basic DataGrid" style="width: 700px; height: 250px"
-                data-options="singleSelect:true,collapsible:true,url:'Data.ashx'" >
-                <thead>          
-                     <tr>
+            <table class="easyui-datagrid" title="DataGrid" style="width: 700px; height: 250px"
+                data-options="singleSelect:true,collapsible:true,url:'Data.ashx?type=GetUser'">
+                <thead>
+                    <tr>
                         <th data-options="field:'id',width:120">ID</th>
                         <th data-options="field:'firstname',width:120">First Name</th>
                         <th data-options="field:'lastname',width:120,align:'right'">Last Name</th>
                         <th data-options="field:'phone',width:140,align:'right'">Phone</th>
-                        <th data-options="field:'email',width:193">Email</th>        
+                        <th data-options="field:'email',width:193">Email</th>
                     </tr>
                 </thead>
             </table>
         </div>
+        <br />
+        <br />
+        <div class="easyui-tabs" id="tt" data-options="tabWidth:112" style="width: 1000px; height: 30px; margin-left: auto; margin-right: auto;">
+            <div title="Flight" style="padding: 10px">
+            </div>
+            <div title="Hotel" style="padding: 10px">
+            </div>
+            <div title="Car" style="padding: 10px">
+            </div>
+        </div>
+        <div id="container" style="margin-left: auto; margin-right: auto; min-width: 250px; height: 300px; max-width: 900px;"></div>
+
     </form>
 </body>
 </html>
