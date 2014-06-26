@@ -70,6 +70,9 @@
         </div>
         <div id="container" style="margin-left: auto; margin-right: auto; min-width: 250px; height: 300px; max-width: 900px;"></div>
 
+        <div id="PieChartDiv">
+            <div id="container1" style="width: 600px; height: 400px; margin: 0 auto"></div>
+        </div>
     </form>
 </body>
 </html>

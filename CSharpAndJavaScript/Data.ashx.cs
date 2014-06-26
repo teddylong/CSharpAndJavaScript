@@ -27,6 +27,10 @@ namespace CSharpAndJavaScript
                     string depName = context.Request["depName"].ToString();
                     str_response = GetCaseTrend(depName);
                     break;
+                case "GetBrowserMatrix":
+                    string depNameBrowserMatrix = context.Request["depName"].ToString();
+                    str_response = GetBrowserMatrix("depNameBrowserMatrix");
+                    break;
             }
             context.Response.Clear();
             context.Response.Write(str_response);
@@ -80,6 +84,23 @@ namespace CSharpAndJavaScript
             return result;
         }
 
+        private string GetBrowserMatrix(string dep)
+        {
+            string result = "";
+            Random r = new Random();
+            int x = r.Next(100);
+            int y = r.Next(100 - x);
+            int z = 100 - x - y;
+            int[] array = new int[3]{x,y,z};
+            foreach (int n in array)
+            {        
+                int xx = r.Next(n);
+                int yy = r.Next(n - xx);
+                int zz = n - xx - yy;
+                result += n + "," + xx+"," + yy +"," + zz + "%";
+            }
+            return result;
+        }
         private DataTable GetDataTable()
         {
             DataTable dt = new DataTable();
