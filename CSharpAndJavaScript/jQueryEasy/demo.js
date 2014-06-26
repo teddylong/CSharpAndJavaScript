@@ -12,8 +12,8 @@
             var depName = e.currentTarget.innerText;
             GetDataByDepName(depName);
             GetBrowserMatrixByDepName(depName);
-            GetPlatformByDepName("Flight");
-            GetAppByDepName("Flight");
+            GetPlatformByDepName(depName);
+            GetAppByDepName(depName);
         });
     }
     $('#dg').datagrid({ loadFilter: pagerFilter }).datagrid('loadData');
