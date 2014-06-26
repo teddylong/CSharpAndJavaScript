@@ -19,3 +19,8 @@ h2 {
 .demo-tip{
 	display:none;
 }
+.myDatePicker {
+    -moz-border-radius: 5px 5px 5px 5px;
+-webkit-border-radius: 5px 5px 5px 5px;
+ border-radius: 5px 5px 5px 5px;
+}
