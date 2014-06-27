@@ -24,20 +24,49 @@ namespace CSharpAndJavaScript
                     str_response = GetGuys();
                     break;
                 case "CaseTrend":
-                    string depName = context.Request["depName"].ToString();
-                    str_response = GetCaseTrend(depName);
+                    if (context.Request["depName"] != null)
+                    {
+                        string depName = context.Request["depName"].ToString();
+                        str_response = GetCaseTrend(depName);
+                    }
+                    else
+                    {
+                        str_response = GetCaseTrend("Example");
+                    }
+ 
                     break;
                 case "GetBrowserMatrix":
-                    string depNameBrowserMatrix = context.Request["depName"].ToString();
-                    str_response = GetBrowserMatrix(depNameBrowserMatrix);
+                    if (context.Request["depName"] != null)
+                    {
+                        string depNameBrowserMatrix = context.Request["depName"].ToString();
+                        str_response = GetBrowserMatrix(depNameBrowserMatrix);
+                    }
+                    else
+                    {
+                        str_response = GetBrowserMatrix("Example");
+                    }
                     break;
                 case "GetPlatform":
-                    string depNamePlatform = context.Request["depName"].ToString();
-                    str_response = GetBrowserMatrix(depNamePlatform);
+                    if (context.Request["depName"] != null)
+                    {
+                        string depNamePlatform = context.Request["depName"].ToString();
+                        str_response = GetBrowserMatrix(depNamePlatform);
+                    }
+                    else
+                    {
+                        str_response = GetBrowserMatrix("Example");
+                    }
                     break;
                 case "GetApp":
-                    string depNameApp = context.Request["depName"].ToString();
-                    str_response = GetApp(depNameApp);
+                    if (context.Request["depName"] != null)
+                    {
+                        string depNameApp = context.Request["depName"].ToString();
+                        str_response = GetApp(depNameApp);
+                    }
+                    else
+                    {
+                        str_response = GetApp("Example");
+                    }
                     break;
             }
             context.Response.Clear();

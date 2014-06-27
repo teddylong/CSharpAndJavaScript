@@ -54,7 +54,7 @@
             <div title="HT" style="padding: 10px">
             </div>
         </div>
-        <div id="container" style="margin-left: auto; margin-right: auto; min-width: 450px; height: 300px; max-width: 1200px;"></div>
+        <div id="container" style="margin-left: auto; margin-right: auto; min-width: 450px; height: 350px; max-width: 1400px;"></div>
         <br /><br />
         <div id="ttt" class="easyui-tabs" style="width: 520px; height: 460px">
             <div title="Browser Matrix" style="padding: 10px">
