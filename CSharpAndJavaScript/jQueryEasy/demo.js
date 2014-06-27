@@ -124,7 +124,7 @@ function GetDataByDepName(depName) {
                         }]
                     },
                     tooltip: {
-                        valueSuffix: ' times'
+                        valueSuffix: ''
                     },
 
                     series: [{ name: 'PC', data: seriesPC }, { name: 'Android', data: seriesAndroid }, { name: 'iOS', data: seriesiOS }]
