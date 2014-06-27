@@ -68,6 +68,7 @@
   <ItemGroup>
     <Content Include="HighChart\highcharts.js" />
     <Content Include="Index.aspx" />
+    <Content Include="jQueryEasy\datagrid-filter.js" />
     <Content Include="jQueryEasy\Demo.css" />
     <Content Include="jQueryEasy\demo.js" />
     <Content Include="jQueryEasy\easyui.css" />

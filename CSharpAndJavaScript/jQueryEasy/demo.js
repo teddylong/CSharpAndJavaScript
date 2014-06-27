@@ -3,7 +3,7 @@
     GetBrowserMatrixByDepName("Flight");
     GetPlatformByDepName("Flight");
     GetAppByDepName("Flight");
-    
+
     // Tabs Update
     var tabs = $('#tt').tabs().tabs('tabs');
     for (var i = 0; i < tabs.length; i++) {
@@ -14,17 +14,67 @@
             GetBrowserMatrixByDepName(depName);
             GetPlatformByDepName(depName);
             GetAppByDepName(depName);
+            $('#dg').datagrid('reload');
         });
     }
-    $('#dg').datagrid({ loadFilter: pagerFilter }).datagrid('loadData');
+
+
+
+    $('#timePicker').datebox('setValue', GetDateStr(0));
    
+
+    
+    var dg = $('#dg').datagrid();
+    dg.datagrid('enableFilter', [
+        {
+            field: 'success',
+            type: 'numberbox',
+            options: { precision: 0 },
+            op: ['equal', 'notequal', 'less', 'greater']
+        },
+        {
+            field: 'fail',
+            type: 'numberbox',
+            options: { precision: 0 },
+            op: ['equal', 'notequal', 'less', 'greater']
+        },
+        {
+            field: 'caseid',
+            type: 'numberbox',
+            options: { precision: 0 },
+            op: ['equal', 'notequal', 'less', 'greater']
+        },
+        {
+            field: 'result',
+            type: 'combobox',
+            options: {
+                panelHeight: 'auto',
+                data: [{ value: '', text: 'ALL'}, { value: 'Pass', text: 'Pass' }, { value: 'Fail', text: 'Fail' }, { value: 'Warn', text: 'Warn' }],
+                onChange: function (value) {
+                    if (value == '') {
+                        dg.datagrid('removeFilterRule', 'result');
+                    } else {
+                        dg.datagrid('addFilterRule', {
+                            field: 'result',
+                            op: 'equal',
+                            value: value
+                        });
+                    }
+                    dg.datagrid('doFilter');
+                }
+            }
+        }
+    ]);
+    //dg.datagrid('doFilter');
+
+    //$('#dg').datagrid({ loadFilter: pagerFilter }).datagrid('loadData');
 });
 
 function GetDataByDepName(depName) {
     $.get("Data.ashx",
             {
                 type: "CaseTrend",
-                depName: depName,
+                depName: depName
             },
             function (result) {
 
@@ -484,6 +534,76 @@ function onSelect(date) {
     GetBrowserMatrixByDepName("Flight");
     GetPlatformByDepName("Flight");
     GetAppByDepName("Flight");
-    $('#dg').datagrid({ loadFilter: pagerFilter }).datagrid('loadData');
-    
+    //$('#dg').datagrid({ loadFilter: pagerFilter }).datagrid('loadData');
+
+    var dg = $('#dg').datagrid();
+    dg.datagrid('enableFilter', [
+        {
+            field: 'success',
+            type: 'numberbox',
+            options: { precision: 0 },
+            op: ['equal', 'notequal', 'less', 'greater']
+        },
+        {
+            field: 'fail',
+            type: 'numberbox',
+            options: { precision: 0 },
+            op: ['equal', 'notequal', 'less', 'greater']
+        },
+        {
+            field: 'caseid',
+            type: 'numberbox',
+            options: { precision: 0 },
+            op: ['equal', 'notequal', 'less', 'greater']
+        },  
+        {
+            field: 'result',
+            type: 'combobox',
+            options: {
+                panelHeight: 'auto',
+                data: [{ value: '', text: 'ALL'}, { value: 'Pass', text: 'Pass' }, { value: 'Fail', text: 'Fail' }, { value: 'Warn', text: 'Warn' }],
+                onChange: function (value) {
+                    if (value == '') {
+                        dg.datagrid('removeFilterRule', 'result');
+                    } else {
+                        dg.datagrid('addFilterRule', {
+                            field: 'result',
+                            op: 'equal',
+                            value: value
+                        });
+                    }
+                    dg.datagrid('doFilter');
+                }
+            }
+        }
+        ]);
+}
+function myformatter(date) {
+    var y = date.getFullYear();
+    var m = date.getMonth() + 1;
+    var d = date.getDate();
+    return y + '-' + (m < 10 ? ('0' + m) : m) + '-' + (d < 10 ? ('0' + d) : d);
+}
+function myparser(s) {
+    if (!s) return new Date();
+    var ss = (s.split('-'));
+    var y = parseInt(ss[0], 10);
+    var m = parseInt(ss[1], 10);
+    var d = parseInt(ss[2], 10);
+    if (!isNaN(y) && !isNaN(m) && !isNaN(d)) {
+        return new Date(y, m - 1, d);
+    } else {
+        return new Date();
+    }
+}
+
+function GetDateStr(AddDayCount) {
+    var dd = new Date();
+    dd.setDate(dd.getDate() + AddDayCount); //获取AddDayCount天后的日期
+    var y = dd.getFullYear();
+    var m = dd.getMonth() + 1; //获取当前月份的日期
+    var d = dd.getDate();
+    if (m < 10) m = "0" + m;
+    if (d < 10) d = "0" + d;
+    return y + "-" + m + "-" + d;
 }

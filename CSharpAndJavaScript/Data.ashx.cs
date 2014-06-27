@@ -153,20 +153,20 @@ namespace CSharpAndJavaScript
             dt.Columns.Add("result", typeof(String));
             dt.Columns.Add("platform", typeof(String));
 
-            dt.Rows.Add(new object[] { 23244, "ExceptionHandlingTest", "6/26 15:55:03", "0", "3","Fail","PC Android" });
-            dt.Rows.Add(new object[] { 23249, "H5TestInBrowser", "6/26 15:55:08", "0","3","Fail","Android" });
-            dt.Rows.Add(new object[] { 23250, "H5TestInBrowser2", "6/26 15:55:11", "0", "3", "Fail", "Android" });
-            dt.Rows.Add(new object[] { 23361, "H5TestInAndroidPhone", "6/26 6:04:00", "1","3","Fail", "PC" });
-            dt.Rows.Add(new object[] { 23454, "H5TestInAndroidPhone", "6/26 6:11:26", "0", "0", "Warn", "PC Android" });
-            dt.Rows.Add(new object[] { 23459, "H5TestEnterRimBooking", "6/26 6:12:49", "1","0","Pass", "PC" });
-            dt.Rows.Add(new object[] { 23460, "H5TestOrderInformation", "6/26 6:13:44", "1", "0", "Pass", "PC Android" });
-            dt.Rows.Add(new object[] { 23461, "H5TestInlandTravel", "6/26 6:13:44", "1", "0", "Pass", "PC Android" });
-            dt.Rows.Add(new object[] { 23463, "H5TestInlandBooking", "6/26 6:13:44", "1", "0", "Pass", "PC Android" });
-            dt.Rows.Add(new object[] { 23464, "H5TestInlandOrderInformation", "6/26 6:13:44", "1", "0", "Pass", "PC Android" });
-            dt.Rows.Add(new object[] { 23483, "H5TestOneDayDepart", "6/26 6:13:44", "0", "1", "Fail", "Android" });
-            dt.Rows.Add(new object[] { 23484, "H5TestOneDayTravel", "6/26 6:13:44", "1", "0", "Pass", "PC Android" });
-            dt.Rows.Add(new object[] { 23485, "H5TestOneDayBooking", "6/26 6:13:44", "1", "0", "Pass", "Android" });
-            dt.Rows.Add(new object[] { 23486, "H5TestOneDayDepart", "6/26 6:13:44", "1", "0", "Pass", "PC Android" });
+            dt.Rows.Add(new object[] { 23244, "ExceptionHandlingTest", "2014-06-26 11:32:59", "0", "3","Fail","PC Android" });
+            dt.Rows.Add(new object[] { 23249, "H5TestInBrowser", "2014-06/26 15:55:08", "0", "3", "Fail", "Android" });
+            dt.Rows.Add(new object[] { 23250, "H5TestInBrowser2", "2014-06/26 15:55:11", "0", "3", "Fail", "Android" });
+            dt.Rows.Add(new object[] { 23361, "H5TestInAndroidPhone", "2014-06/26 6:04:00", "1", "3", "Fail", "PC" });
+            dt.Rows.Add(new object[] { 23454, "H5TestInAndroidPhone", "2014-06/26 6:11:26", "0", "0", "Warn", "PC Android" });
+            dt.Rows.Add(new object[] { 23459, "H5TestEnterRimBooking", "2014-06/26 6:12:49", "1", "0", "Pass", "PC" });
+            dt.Rows.Add(new object[] { 23460, "H5TestOrderInformation", "2014-06/26 6:13:44", "1", "0", "Pass", "PC Android" });
+            dt.Rows.Add(new object[] { 23461, "H5TestInlandTravel", "2014-06/26 6:13:44", "1", "0", "Pass", "PC Android" });
+            dt.Rows.Add(new object[] { 23463, "H5TestInlandBooking", "2014-06/26 6:13:44", "1", "0", "Pass", "PC Android" });
+            dt.Rows.Add(new object[] { 23464, "H5TestInlandOrderInformation", "2014-06/26 6:13:44", "1", "0", "Pass", "PC Android" });
+            dt.Rows.Add(new object[] { 23483, "H5TestOneDayDepart", "2014-06/26 6:16:44", "0", "1", "Fail", "Android" });
+            dt.Rows.Add(new object[] { 23484, "H5TestOneDayTravel", "2014-06/26 6:19:44", "1", "0", "Pass", "PC Android" });
+            dt.Rows.Add(new object[] { 23485, "H5TestOneDayBooking", "2014-06/26 6:13:44", "1", "0", "Pass", "Android" });
+            dt.Rows.Add(new object[] { 23486, "H5TestOneDayDepart", "2014-06/26 6:43:44", "1", "0", "Pass", "PC Android" });
             return dt;
         }
         public string GetJson(DataTable dt)
