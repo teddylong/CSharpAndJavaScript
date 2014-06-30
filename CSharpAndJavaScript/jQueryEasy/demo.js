@@ -1,11 +1,17 @@
-﻿$(function () {
+﻿var depdep = 'Flight';
 
+$(function () {
+
+    // Set up Date
+    $('#timePicker').datebox('setValue', GetDateStr(0));
     // Init data for four highcharts
     GetDataByDepName("Flight");
     GetBrowserMatrixByDepName("Flight");
     GetPlatformByDepName("Flight");
     GetAppByDepName("Flight");
-    topRight("Welcome");
+
+
+    topRight("Flight", $('#timePicker').datebox('getValue'));
 
     // Tabs Update
     var tabs = $('#tt').tabs().tabs('tabs');
@@ -13,19 +19,24 @@
         tabs[i].panel('options').tab.unbind().bind('mouseenter', { index: i }, function (e) {
             $('#tt').tabs('select', e.data.index);
             var depName = e.currentTarget.innerText;
+            depdep = depName;
             GetDataByDepName(depName);
             GetBrowserMatrixByDepName(depName);
             GetPlatformByDepName(depName);
             GetAppByDepName(depName);
             var currentDate = $('#timePicker').datebox('getValue');
-            topRight(depName + "\n" + currentDate);
+
+            $("div").remove(".panel.window");
+            
+
+            topRight(depName, currentDate);
             $('#dg').datagrid('reload');
             
         });
     }
 
     // Set up DateBox Vaule
-    $('#timePicker').datebox('setValue', GetDateStr(0)); 
+    
 
 
     $('#dg').datagrid({
@@ -585,6 +596,9 @@ function onSelect(date) {
     GetAppByDepName("Flight");
     //$('#dg').datagrid({ loadFilter: pagerFilter }).datagrid('loadData');
 
+    $("div").remove(".panel.window");
+    topRight(depdep, myformatter(date));
+
     var dg = $('#dg').datagrid();
     dg.datagrid('enableFilter', [
         {
@@ -655,12 +669,12 @@ function GetDateStr(AddDayCount) {
     if (d < 10) d = "0" + d;
     return y + "-" + m + "-" + d;
 }
-function topRight(message) {
+function topRight(bu,date) {
     $.messager.show({
         title: 'Current View',
-        msg: message,
-        showType: 'fade',
-        timeout: 0,
+        msg: '<div>Dep: ' +bu + '</div><br/><div>Date: ' + date + '</div>',
+        showType: 'slide',
+        timeout: 5000,
         style: {
             left: '',
             right: 0,
