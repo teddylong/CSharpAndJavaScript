@@ -71,7 +71,7 @@
                 </div>
             </div>
 
-            <div id="DataTableDiv" style="margin-left: 530px; margin-top: -480px; width: 870px;">
+            <div id="DataTableDiv" class="" style="margin-left: 530px; margin-top: -480px; width: 870px;">
                 <div style="margin: 20px 0;"></div>
                 <table id="dg" title="Case Detail" style="width: 870px; height: 460px;"
                     data-options="
@@ -96,7 +96,7 @@
                 </table>
                 <div id="tb" style="padding: 5px; height: auto">
                     <div>
-                        Date Choose:<input class="easyui-datebox" id="timePicker" style="width: 120px" data-options="onSelect:onSelect,formatter:myformatter,parser:myparser" />
+                        Date Choose:<input class="easyui-datebox" id="timePicker" style="width: 120px;margin-left:10px;"  data-options="onSelect:onSelect,formatter:myformatter,parser:myparser" />
                     </div>
                 </div>
             </div>
