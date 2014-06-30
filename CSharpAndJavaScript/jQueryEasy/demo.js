@@ -1,4 +1,6 @@
 ﻿$(function () {
+
+    // Init data for four highcharts
     GetDataByDepName("Flight");
     GetBrowserMatrixByDepName("Flight");
     GetPlatformByDepName("Flight");
@@ -18,12 +20,53 @@
         });
     }
 
+    // Set up DateBox Vaule
+    $('#timePicker').datebox('setValue', GetDateStr(0)); 
 
 
-    $('#timePicker').datebox('setValue', GetDateStr(0));
-   
+    $('#dg').datagrid({
+        view: detailview,
+        detailFormatter: function (index, row) {
+            return '<div style="padding:2px"><table class="ddv"></table></div>';
+        },
+        onExpandRow: function (index, row) {
+            var ddv = $(this).datagrid('getRowDetail', index).find('table.ddv');
+            ddv.datagrid({
+                url: 'Data.ashx?type=GetSubDataTable&CaseInfoID=' + row.caseid,
+                fitColumns: true,
+                singleSelect: true,
+                rownumbers: true,
+                loadMsg: '',
+                height: 'auto',
+                width: 780,
+                columns: [[
+                    { field: 'jobid', title: 'JobID', width: 40, align: 'center' },
+                    { field: 'jobname', title: 'JobName', width: 120, align: 'center' },
+                    { field: 'gmtcreate', title: 'Create Time', width: 100, align: 'center' },
+                    { field: 'mobileostype', title: 'OS Type', width: 60, align: 'center' },
+                    { field: 'mobilebrowsertype', title: 'Browser', width: 60, align: 'center' },
+                    { field: 'mobilebrowserversion', title: 'Browser Version', width: 80, align: 'center' }
 
-    
+                ]],
+                onResize: function () {
+                    $('#dg').datagrid('fixDetailRowHeight', index);
+                },
+                onLoadSuccess: function () {
+                    setTimeout(function () {
+                        $('#dg').datagrid('fixDetailRowHeight', index);
+                    }, 0);
+                },
+                rowStyler: function (index, row) {
+                    if (row.jobid > 30) {
+                        return 'background-color:#6293BB;color:#fff;font-weight:bold;';
+                    }
+                }
+            });
+            $('#dg').datagrid('fixDetailRowHeight', index);
+        }
+    });
+
+    // Set up the data grid filter
     var dg = $('#dg').datagrid();
     dg.datagrid('enableFilter', [
         {
@@ -65,6 +108,8 @@
             }
         }
     ]);
+
+   
     //dg.datagrid('doFilter');
 
     //$('#dg').datagrid({ loadFilter: pagerFilter }).datagrid('loadData');
@@ -124,7 +169,7 @@ function GetDataByDepName(depName) {
                         }]
                     },
                     tooltip: {
-                        valueSuffix: ''
+                        valueSuffix: ' Case(s)'
                     },
 
                     series: [{ name: 'PC', data: seriesPC }, { name: 'Android', data: seriesAndroid }, { name: 'iOS', data: seriesiOS }]
@@ -596,7 +641,6 @@ function myparser(s) {
         return new Date();
     }
 }
-
 function GetDateStr(AddDayCount) {
     var dd = new Date();
     dd.setDate(dd.getDate() + AddDayCount); //获取AddDayCount天后的日期

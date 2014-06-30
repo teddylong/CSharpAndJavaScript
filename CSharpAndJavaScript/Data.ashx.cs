@@ -68,6 +68,15 @@ namespace CSharpAndJavaScript
                         str_response = GetApp("Example");
                     }
                     break;
+                case "GetSubDataTable":
+                    
+                    //string depNameApp = context.Request["depName"].ToString();
+                    string CaseInfoID = context.Request["CaseInfoID"].ToString();
+
+                    var dt = GetSubDataTabel(int.Parse(CaseInfoID));
+                    str_response =  GetJson(dt);
+                    
+                    break;
             }
             context.Response.Clear();
             context.Response.Write(str_response);
@@ -197,6 +206,35 @@ namespace CSharpAndJavaScript
             dt.Rows.Add(new object[] { 23485, "H5TestOneDayBooking", "2014-06/26 6:13:44", "1", "0", "Pass", "Android" });
             dt.Rows.Add(new object[] { 23486, "H5TestOneDayDepart", "2014-06/26 6:43:44", "1", "0", "Pass", "PC Android" });
             return dt;
+        }
+
+        private DataTable GetSubDataTabel(int CaseInfoID)
+        {
+            DataTable dt = new DataTable();
+            dt.Columns.Add("jobid", typeof(Int32));
+            dt.Columns.Add("jobname", typeof(String));
+            dt.Columns.Add("gmtcreate", typeof(String));
+            dt.Columns.Add("mobileostype", typeof(String));
+            dt.Columns.Add("mobilebrowsertype", typeof(String));
+            dt.Columns.Add("mobilebrowserversion", typeof(String));
+
+            switch (CaseInfoID)
+            { 
+                case 23244:
+                    dt.Rows.Add(new object[] { 63261, "H5.AT.TestCaseDemo", "2014-06-16 13:51:09", "PC","Chrome","11.0" });
+                    dt.Rows.Add(new object[] { 63267, "H5.AT.TestCaseDemo", "2014-06-16 14:32:42", "PC", "Chrome", "12.0" });
+                    break;
+                case 23249:
+                    dt.Rows.Add(new object[] { 63573, "H5.AT.TestCaseDemo", "2014-06-17 16:04:42", "Android", "Chrome", "5.5" });
+                    dt.Rows.Add(new object[] { 63574, "H5.AT.TestCaseDemo", "2014-06-17 16:05:15", "Android", "Android Browser", "4.9" });
+                    break;
+                case 23361:
+                    dt.Rows.Add(new object[] { 64273, "H5.Vacations.Wireless", "2014-06-19 11:10:07", "iOS", "Safari", "7.5" });
+                    dt.Rows.Add(new object[] { 64343, "H5.Vacations.Wireless", "2014-06-19 16:22:23", "iOS", "Safari", "7.0" });
+                    break;
+            }
+            return dt;
+           
         }
         public string GetJson(DataTable dt)
         {
