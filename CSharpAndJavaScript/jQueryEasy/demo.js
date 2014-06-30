@@ -5,6 +5,7 @@
     GetBrowserMatrixByDepName("Flight");
     GetPlatformByDepName("Flight");
     GetAppByDepName("Flight");
+    topRight("Welcome");
 
     // Tabs Update
     var tabs = $('#tt').tabs().tabs('tabs');
@@ -16,7 +17,10 @@
             GetBrowserMatrixByDepName(depName);
             GetPlatformByDepName(depName);
             GetAppByDepName(depName);
+            var currentDate = $('#timePicker').datebox('getValue');
+            topRight(depName + "\n" + currentDate);
             $('#dg').datagrid('reload');
+            
         });
     }
 
@@ -650,4 +654,22 @@ function GetDateStr(AddDayCount) {
     if (m < 10) m = "0" + m;
     if (d < 10) d = "0" + d;
     return y + "-" + m + "-" + d;
+}
+function topRight(message) {
+    $.messager.show({
+        title: 'Current View',
+        msg: message,
+        showType: 'fade',
+        timeout: 0,
+        style: {
+            left: '',
+            right: 0,
+            top: document.body.scrollTop + document.documentElement.scrollTop,
+            bottom: ''
+        }
+    });
+}
+function closeMessager()
+{
+    $.messager.close();
 }
