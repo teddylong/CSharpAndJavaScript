@@ -1,0 +1,100 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Mobile Task</title>
+    <link rel="stylesheet" type="text/css" href="jQueryEasy/easyui.css">
+    <link rel="stylesheet" type="text/css" href="jQueryEasy/icon.css">
+    <link rel="stylesheet" type="text/css" href="jQueryEasy/demo.css">
+    <script type="text/javascript" src="jQueryEasy/jquery.min.js"></script>
+    <script type="text/javascript" src="jQueryEasy/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="jQueryEasy/Mobile.js"></script>
+    <script type="text/javascript">
+        
+    </script>
+</head>
+<body>
+    <div id="WholeDiv" style="margin-left:auto;margin-right:auto;width:1400px">
+        <div class="easyui-layout" style="width:1300px;height:880px;">
+            <div data-options="region:'north'" style="height:50px"></div>
+            <!--<div data-options="region:'south',split:true" style="height:50px;"></div>-->
+            <!--<div data-options="region:'east',split:true" title="East" style="width:100px;"></div>-->
+            <div data-options="region:'west',split:true" title="Prepare" style="width:200px;">
+                <div style="margin-top:15px; margin-left:auto;margin-right:auto;width:160px;">
+                    <label>Dep:</label>
+                    <select class="easyui-combobox" name="state" style="width:100px;">
+                        <option value="Flight">Flight</option>
+                        <option value="Hotel">Hotel</option>
+                        <option value="Car">Car</option>
+                        <option value="Corp">Corp</option>
+                        <option value="NB">NB</option>
+                        <option value="Vacations">Vacations</option>
+                        <option value="PF">PF</option>
+                        <option value="YOU">YOU</option>
+                        <option value="Cruise">Cruise</option>
+                        <option value="Intl">Intl</option>
+                        <option value="TTD">TTD</option>
+                        <option value="Taocan">Taocan</option>
+                        <option value="Train">Train</option>
+                        <option value="HT">HT</option>
+                    </select>
+                </div>
+            </div>
+            <div data-options="region:'center',title:'Mobile Task'">
+                <div id="AddPanel" style="margin-left:12px;margin-top:20px;height:50px;">
+                    <a href="#" id="addBtn" class="easyui-linkbutton" data-options="iconCls:'icon-add'">Add</a>
+                    <br /><br />
+                    <label>There is no task, click 'Add' button to create one.</label>
+                </div>
+                <br/><br />
+                <div id="TaskPanel" style="margin-left:50px;margin-right:10px;">
+                    <div class="easyui-panel" title="First Step: (Define Name and Test URL)"
+                          data-options="iconCls:'icon-tip',collapsible:true,minimizable:false,maximizable:false,closable:false"
+                          style="width:1000px;height:200px;padding:5px;">
+                        <div style="margin-left:10px;margin-top:10px;">
+                            <label style="font-size:13px;">Task Name:</label>
+                            <div style="float:right; width:250px;height:120px;margin-right:40px;">
+                                <label style="font-size:13px;">Task Desc:</label>
+                                <br />
+                                <textarea style="margin-top:5px;width:230px;height:105px;border-radius:5px;border:1px solid #95B8E7;"
+                                          placeholder="Describe your task..." cols="50" rows="4"></textarea>
+                            </div>
+                            <br/>
+                            <input class="textbox" style="margin-top:5px;width:200px;height:25px;text-wrap:normal" />
+                            <br /><br /><br />
+                            
+                            <label style="font-size:13px;">Testing URL:</label>
+                            <br />
+                            <input class="textbox" style="margin-top:5px;width:350px;height:25px;" />
+                           
+                        </div>
+                    </div>
+                    <br />
+                    <div class="easyui-panel"  title="Second Step: (Choose Test Type)"
+                         data-options="iconCls:'icon-tip',collapsible:true,minimizable:false,maximizable:false,closable:false"
+                         style="width:1000px; height:200px;padding:5px;">
+                        <div class="combo-panel">
+                            <div id="cc" style="padding:10px;">
+                                <input type="radio" name="type" value="01"><span style="margin-top:-2px;">Type 1</span></input><br/>
+                                <input type="radio" name="type" value="02"><span>Type 2</span></input><br />
+                                <input type="radio" name="type" value="03"><span>Type 3</span></input>
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="easyui-panel" title="Third Step: (Choose Test Device)"
+                         data-options="iconCls:'icon-tip',collapsible:true,minimizable:false,maximizable:false,closable:false"
+                         style="width:1000px;height:230px;padding:5px;">
+
+                    </div>
+                    <div style="position:absolute;right:30px; bottom:10px;">
+                        <a href="#" class="easyui-linkbutton" id="SubmitBtn" data-options="iconCls:'icon-ok'">Sumbit</a>
+                        <a href="#" class="easyui-linkbutton" id="CancelBtn" style="margin-left:15px;" data-options="iconCls:'icon-cancel'">Cancel</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

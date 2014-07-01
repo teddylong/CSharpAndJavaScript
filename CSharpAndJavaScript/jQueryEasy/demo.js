@@ -175,7 +175,7 @@ function GetDataByDepName(depName) {
                     yAxis: {
                         min: 0,
                         title: {
-                            text: 'Case Count'
+                            text: 'Case Pass Count'
                         },
                         plotLines: [{
                             value: 0,
@@ -673,7 +673,7 @@ function topRight(bu,date) {
     $.messager.show({
         title: 'Current View',
         msg: '<div>Dep: ' +bu + '</div><br/><div>Date: ' + date + '</div>',
-        showType: 'slide',
+        showType: 'fade',
         timeout: 5000,
         style: {
             left: '',
