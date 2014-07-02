@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<task>
+  <item>
+    <dep>Flight</dep>
+    <type>H5</type>
+    <name>Test H5 Mobile Op</name>
+    <testurl>http://asdasdasdasd.asdasd</testurl>
+    <testtype>3</testtype>
+    <device>
+      <item>HTC</item>
+      <item>SamSung</item>
+    </device>
+  </item>
+</task>
