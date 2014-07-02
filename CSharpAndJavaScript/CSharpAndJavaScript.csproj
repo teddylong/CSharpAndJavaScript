@@ -128,6 +128,7 @@
     <Content Include="jQueryEasy\jquery.min.js" />
     <Content Include="jQueryEasy\Mobile.js" />
     <Content Include="Mobile.html" />
+    <Content Include="Task.xml" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>

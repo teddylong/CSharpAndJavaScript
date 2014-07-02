@@ -36,6 +36,11 @@
         }
         WriteDetail();
     });
+
+    $('#SubmitBtn').click(function ()
+    {
+
+    })
     
 });
 
@@ -49,7 +54,5 @@ function WriteDetail()
             textDetail += $(this).attr("alt") + "<br/><br/>";
         }
     });
-
     $("#phoneDetailText").html(textDetail);
-   
 }
