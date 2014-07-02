@@ -68,6 +68,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="HighChart\highcharts.js" />
+    <Content Include="images\iphone.png" />
+    <Content Include="images\HTC.png" />
+    <Content Include="images\SamSung.png" />
+    <Content Include="images\Xiaomi.png" />
     <Content Include="Index.aspx" />
     <Content Include="jQueryEasy\datagrid-filter.js" />
     <Content Include="jQueryEasy\Demo.css" />
