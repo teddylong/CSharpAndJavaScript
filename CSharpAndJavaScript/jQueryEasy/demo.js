@@ -187,6 +187,30 @@ function GetDataByDepName(depName) {
                         valueSuffix: ' Case(s)'
                     },
 
+                    plotOptions: {
+                        series: {
+                            cursor: 'pointer',
+                            point: {
+                                events: {
+                                    click: function (e) {
+                                        //clickable for the new feature
+                                        var todayClick = new Date();
+                                        var monthClick = todayClick.getMonth() + 1;
+                                        var dateClick = todayClick.getFullYear() + "-" + monthClick + "-" + e.point.category;
+                                        var newDate = new Date(dateClick);
+
+                                        $('#timePicker').datebox('setValue', dateClick);
+                                        onSelect(newDate);
+
+                                    }
+                                }
+                            },
+                            marker: {
+                                lineWidth: 1
+                            }
+                        }
+                    },
+
                     series: [{ name: 'PC', data: seriesPC }, { name: 'Android', data: seriesAndroid }, { name: 'iOS', data: seriesiOS }]
                 });
 
@@ -686,4 +710,20 @@ function topRight(bu,date) {
 function closeMessager()
 {
     $.messager.close();
+}
+
+// support calc method
+function daysBetween(DateOne, DateTwo) {
+
+    var OneMonth = DateOne.substring(5, DateOne.lastIndexOf('-'));
+    var OneDay = DateOne.substring(DateOne.length, DateOne.lastIndexOf('-') + 1);
+    var OneYear = DateOne.substring(0, DateOne.indexOf('-'));
+
+    var TwoMonth = DateTwo.substring(5, DateTwo.lastIndexOf('-'));
+    var TwoDay = DateTwo.substring(DateTwo.length, DateTwo.lastIndexOf('-') + 1);
+    var TwoYear = DateTwo.substring(0, DateTwo.indexOf('-'));
+
+    var cha = ((Date.parse(OneMonth + '/' + OneDay + '/' + OneYear) - Date.parse(TwoMonth + '/' + TwoDay + '/' + TwoYear)) / 86400000);
+    return Math.abs(cha);
+
 }
