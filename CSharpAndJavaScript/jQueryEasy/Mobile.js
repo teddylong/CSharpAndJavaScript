@@ -1,6 +1,6 @@
 ﻿$(function () {
 
-    //$('#TaskPanel').hide();
+    $('#TaskPanel').hide();
     $('#addBtn').bind('click', function () {
         $('#AddPanel').hide();
         $('#TaskPanel').show();
