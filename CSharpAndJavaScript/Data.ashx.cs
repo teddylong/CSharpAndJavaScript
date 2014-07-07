@@ -77,6 +77,20 @@ namespace CSharpAndJavaScript
                     str_response =  GetJson(dt);
                     
                     break;
+                case "GetJobList":
+                    if (context.Request["depName"] != null)
+                    {
+                        string depNameJobList = context.Request["depName"].ToString();
+                        var jobListDataTable = GetJobList(depNameJobList);
+                        str_response = GetJson(jobListDataTable);
+                    }
+                    else
+                    {
+                        var jobListDataTable = GetJobList("Flight");
+                        str_response = GetJson(jobListDataTable);
+                    }
+                    break;
+
             }
             context.Response.Clear();
             context.Response.Write(str_response);
@@ -231,6 +245,39 @@ namespace CSharpAndJavaScript
                 case 23361:
                     dt.Rows.Add(new object[] { 64273, "H5.Vacations.Wireless", "2014-06-19 11:10:07", "iOS", "Safari", "7.5" });
                     dt.Rows.Add(new object[] { 64343, "H5.Vacations.Wireless", "2014-06-19 16:22:23", "iOS", "Safari", "7.0" });
+                    break;
+            }
+            return dt;
+           
+        }
+
+        private DataTable GetJobList(string depName)
+        {
+            DataTable dt = new DataTable();
+            dt.Columns.Add("ID", typeof(Int32));
+            dt.Columns.Add("JobName", typeof(String));
+            dt.Columns.Add("JobDesc", typeof(String));
+            switch (depName)
+            { 
+                case "Flight":
+                    dt.Rows.Add(new object[] { 1, "6381AutoTestDemo", "6381录入主流程Demo" });
+                    dt.Rows.Add(new object[] { 2, "AA.Hotel.Online.Intl.New", "酒店Online海外" });
+                    break;
+                case "Hotel":
+                    dt.Rows.Add(new object[] { 1, "ABTestClient", "ABTestClient for Hotel" });
+                    dt.Rows.Add(new object[] { 2, "API.Account", "平台接口自动化测试" });
+                    break;
+                case "Car":
+                    dt.Rows.Add(new object[] { 1, "API.Car.Connect", "用车API测试" });
+                    dt.Rows.Add(new object[] { 2, "AA.Hotel.Online.Intl.New", "酒店Online海外" });
+                    break;
+                case "Corp":
+                    dt.Rows.Add(new object[] { 1, "API.Corp.Order", "商旅接口自动化测试" });
+                    dt.Rows.Add(new object[] { 2, "API.Corp.Booking", "商旅接口自动化测试" });
+                    break;
+                case "Vacations":
+                    dt.Rows.Add(new object[] { 1, "API.Vacations.Booking", "Vacation-API" });
+                    dt.Rows.Add(new object[] { 2, "API.Vacations.OpenAPI", "团队API" });
                     break;
             }
             return dt;

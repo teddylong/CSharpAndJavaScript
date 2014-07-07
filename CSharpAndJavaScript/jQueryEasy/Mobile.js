@@ -56,3 +56,12 @@ function WriteDetail()
     });
     $("#phoneDetailText").html(textDetail);
 }
+function formatItem(row) {
+    var s = '<span style="font-weight:bold">' + row.JobName + '</span><br/>' +
+            '<span style="color:#888">' + row.JobDesc + '</span>';
+    return s;
+}
+function ChangeJobList(dep)
+{
+    
+}

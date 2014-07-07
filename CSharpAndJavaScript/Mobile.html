@@ -22,7 +22,7 @@
             <div data-options="region:'west',split:true" title="Prepare" style="width:200px;">
                 <div style="margin-top:15px; margin-left:auto;margin-right:auto;width:160px;">
                     <label>Dep:</label>
-                    <select class="easyui-combobox" name="state" style="width:100px;">
+                    <select class="easyui-combobox" name="state" style="width:100px;" data-options="onSelect: function(rec){var url = 'Data.ashx?type=GetJobList&depName=' + rec.value; $('#JobListCombo').combobox('reload', url);}">
                         <option value="Flight">Flight</option>
                         <option value="Hotel">Hotel</option>
                         <option value="Car">Car</option>
@@ -38,6 +38,10 @@
                         <option value="Train">Train</option>
                         <option value="HT">HT</option>
                     </select>
+                    <br /><br /><br /><br />
+                    <label>Job List:</label>
+                    <br /><br />
+                    <input class="easyui-combobox" id="JobListCombo" style="width:150px;" name="joblist" data-options="url: 'Data.ashx?type=GetJobList',valueField: 'ID',textField: 'JobName',panelWidth: 350,panelHeight: 'auto',formatter: formatItem" />
                 </div>
             </div>
             <div data-options="region:'center',title:'Mobile Task'">
