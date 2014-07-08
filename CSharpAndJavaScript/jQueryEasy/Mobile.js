@@ -39,7 +39,20 @@
 
     $('#SubmitBtn').click(function ()
     {
+        var buttonClicked = "";
+        $('.easyui-linkbutton').each(function (i) {
 
+            for (var y = 0; y < $('.easyui-linkbutton')[i].classList.length; y++)
+            {
+                if ($('.easyui-linkbutton')[i].classList[y].indexOf("l-btn-selected") > -1)
+                {
+                    buttonClicked += $('.easyui-linkbutton')[i].text;
+                }
+            }
+            
+            
+        });
+        alert(buttonClicked);
     })
 
     $('#JobListCombo').combobox(
