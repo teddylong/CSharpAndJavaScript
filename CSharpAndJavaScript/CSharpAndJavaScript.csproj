@@ -40,6 +40,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>.\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -68,8 +72,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="HighChart\highcharts.js" />
-    <Content Include="images\iphone.png" />
     <Content Include="images\HTC.png" />
+    <Content Include="images\HuaWei.png" />
+    <Content Include="images\itouch4.png" />
+    <Content Include="images\Lenovo.png" />
     <Content Include="images\SamSung.png" />
     <Content Include="images\Xiaomi.png" />
     <Content Include="Index.aspx" />
@@ -142,6 +148,8 @@
     <Compile Include="Index.aspx.designer.cs">
       <DependentUpon>Index.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Job.cs" />
+    <Compile Include="JsonHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <PropertyGroup>

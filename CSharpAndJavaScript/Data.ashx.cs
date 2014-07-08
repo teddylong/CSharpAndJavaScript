@@ -1,17 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.IO;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Web;
+using Newtonsoft.Json.Linq;
 
 namespace CSharpAndJavaScript
 {
     /// <summary>
     /// Summary description for Data
     /// </summary>
+    
     public class Data : IHttpHandler
     {
+        private List<Job> jobList;
         public void ProcessRequest(HttpContext context)
         {
             string type = context.Request["type"].ToString();
@@ -81,13 +86,43 @@ namespace CSharpAndJavaScript
                     if (context.Request["depName"] != null)
                     {
                         string depNameJobList = context.Request["depName"].ToString();
-                        var jobListDataTable = GetJobList(depNameJobList);
-                        str_response = GetJson(jobListDataTable);
+                        string url = "http://ci.test.sh.ctriptravel.com:8080/view/" + GetChineseDepName(depNameJobList) + "/api/json";
+
+                        string res = JsonHelper.GetJsonString(url);
+                        JObject jsonObj = JObject.Parse(res);
+                        JArray root = (JArray)jsonObj["jobs"];
+                        jobList = root.ToObject<List<Job>>();
+
+                        List<Job> newList = new List<Job>();
+                        foreach (Job job in jobList)
+                        {
+                            string jobName = job.Name;
+                            if (jobName.Contains("H5"))
+                            {
+                                newList.Add(job);
+                            }
+                        }
+                        str_response = Obj2Json(newList);                     
                     }
                     else
                     {
-                        var jobListDataTable = GetJobList("Flight");
-                        str_response = GetJson(jobListDataTable);
+                        string urlxx = "http://ci.test.sh.ctriptravel.com:8080/view/" + "机票" + "/api/json";
+                        string res = JsonHelper.GetJsonString(urlxx);
+                        JObject jsonObj = JObject.Parse(res);
+                        JArray root = (JArray)jsonObj["jobs"];
+                        jobList = root.ToObject<List<Job>>();
+
+                        List<Job> newList = new List<Job>();
+                        foreach (Job job in jobList)
+                        {
+                            string jobName = job.Name;
+                            if (jobName.Contains("H5"))
+                            {
+                                newList.Add(job);
+                            }
+                        }
+                        str_response = Obj2Json(newList);                 
+                        
                     }
                     break;
 
@@ -96,7 +131,21 @@ namespace CSharpAndJavaScript
             context.Response.Write(str_response);
             context.Response.End();         
         }
-
+        public string Obj2Json(List<Job> xxx)
+        {
+            try
+            {
+                //System.Runtime.Serialization.Json.DataContractJsonSerializer serializer = new System.Runtime.Serialization.Json.DataContractJsonSerializer(data.GetType());
+                System.Web.Script.Serialization.JavaScriptSerializer oSerializer = new System.Web.Script.Serialization.JavaScriptSerializer();
+                string sJSON = oSerializer.Serialize(xxx);
+                return sJSON;
+            }
+            catch
+            {
+                return "";
+            }
+               
+        }
         public bool IsReusable
         {
             get
@@ -251,36 +300,47 @@ namespace CSharpAndJavaScript
            
         }
 
-        private DataTable GetJobList(string depName)
+        private String GetJobList(string url)
         {
-            DataTable dt = new DataTable();
-            dt.Columns.Add("ID", typeof(Int32));
-            dt.Columns.Add("JobName", typeof(String));
-            dt.Columns.Add("JobDesc", typeof(String));
-            switch (depName)
-            { 
-                case "Flight":
-                    dt.Rows.Add(new object[] { 1, "6381AutoTestDemo", "6381录入主流程Demo" });
-                    dt.Rows.Add(new object[] { 2, "AA.Hotel.Online.Intl.New", "酒店Online海外" });
-                    break;
-                case "Hotel":
-                    dt.Rows.Add(new object[] { 1, "ABTestClient", "ABTestClient for Hotel" });
-                    dt.Rows.Add(new object[] { 2, "API.Account", "平台接口自动化测试" });
-                    break;
-                case "Car":
-                    dt.Rows.Add(new object[] { 1, "API.Car.Connect", "用车API测试" });
-                    dt.Rows.Add(new object[] { 2, "AA.Hotel.Online.Intl.New", "酒店Online海外" });
-                    break;
-                case "Corp":
-                    dt.Rows.Add(new object[] { 1, "API.Corp.Order", "商旅接口自动化测试" });
-                    dt.Rows.Add(new object[] { 2, "API.Corp.Booking", "商旅接口自动化测试" });
-                    break;
-                case "Vacations":
-                    dt.Rows.Add(new object[] { 1, "API.Vacations.Booking", "Vacation-API" });
-                    dt.Rows.Add(new object[] { 2, "API.Vacations.OpenAPI", "团队API" });
-                    break;
-            }
-            return dt;
+            //DataTable dt = new DataTable();
+            //dt.Columns.Add("ID", typeof(Int32));
+            //dt.Columns.Add("JobName", typeof(String));
+            //dt.Columns.Add("JobDesc", typeof(String));
+            //switch (depName)
+            //{ 
+            //    case "Flight":
+            //        dt.Rows.Add(new object[] { 1, "6381AutoTestDemo", "6381录入主流程Demo" });
+            //        dt.Rows.Add(new object[] { 2, "AA.Hotel.Online.Intl.New", "酒店Online海外" });
+            //        break;
+            //    case "Hotel":
+            //        dt.Rows.Add(new object[] { 1, "ABTestClient", "ABTestClient for Hotel" });
+            //        dt.Rows.Add(new object[] { 2, "API.Account", "平台接口自动化测试" });
+            //        break;
+            //    case "Car":
+            //        dt.Rows.Add(new object[] { 1, "API.Car.Connect", "用车API测试" });
+            //        dt.Rows.Add(new object[] { 2, "AA.Hotel.Online.Intl.New", "酒店Online海外" });
+            //        break;
+            //    case "Corp":
+            //        dt.Rows.Add(new object[] { 1, "API.Corp.Order", "商旅接口自动化测试" });
+            //        dt.Rows.Add(new object[] { 2, "API.Corp.Booking", "商旅接口自动化测试" });
+            //        break;
+            //    case "Vacations":
+            //        dt.Rows.Add(new object[] { 1, "API.Vacations.Booking", "Vacation-API" });
+            //        dt.Rows.Add(new object[] { 2, "API.Vacations.OpenAPI", "团队API" });
+            //        break;
+            //}
+            //return dt;
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
+            request.Method = "GET";
+            request.ContentType = "text/html;charset=UTF-8";
+            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+            Stream myResponseStream = response.GetResponseStream();
+            StreamReader myStreamReader = new StreamReader(myResponseStream, Encoding.GetEncoding("utf-8"));
+            string retString = myStreamReader.ReadToEnd();
+            myStreamReader.Close();
+            myResponseStream.Close();
+
+            return retString;
            
         }
         public string GetJson(DataTable dt)
@@ -302,6 +362,64 @@ namespace CSharpAndJavaScript
                 rows.Add(row);
             }
             return serializer.Serialize(rows);
+        }
+
+        public string GetChineseDepName(string EnDepName)
+        {
+            switch (EnDepName)
+            {
+                case "Flight":
+                    return "机票";
+
+                case "Hotel":
+                    return "酒店";
+
+                case "Corp":
+                    return "商旅";
+
+                case "NB":
+                    return "营销";
+
+                case "PF":
+                    return "公共服务";
+
+                case "Vacations":
+                    return "团队";
+
+                case "AT":
+                    return "自动化";
+
+                case "Other":
+                    return "其他";
+
+                case "YOU":
+                    return "攻略社区";
+
+                case "Cruise":
+                    return "邮轮";
+
+                case "Intl":
+                    return "国际网站";
+
+                case "TTD":
+                    return "地面";
+
+                case "Taocan":
+                    return "套餐";
+
+                case "Train":
+                    return "火车票";
+
+                case "Car":
+                    return "用车";
+
+                case "HT":
+                    return "高端旅游";
+
+                default:
+                    return "";
+
+            }
         }
     }
 }

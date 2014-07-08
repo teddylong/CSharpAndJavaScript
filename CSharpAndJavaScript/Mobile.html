@@ -41,7 +41,7 @@
                     <br /><br /><br /><br />
                     <label>Job List:</label>
                     <br /><br />
-                    <input class="easyui-combobox" id="JobListCombo" style="width:150px;" name="joblist" data-options="url: 'Data.ashx?type=GetJobList',valueField: 'JobName',textField: 'JobName',panelWidth: 350,panelHeight: 'auto',formatter: formatItem" />
+                    <input class="easyui-combobox" id="JobListCombo" style="width:150px;" name="joblist" data-options="url: 'Data.ashx?type=GetJobList',valueField: 'Url',textField: 'Name',panelWidth: 350,panelHeight: 'auto',formatter: formatItem" />
                 </div>
             </div>
             <div data-options="region:'center',title:'Mobile Task'">
@@ -52,24 +52,30 @@
                 </div>
                 <br/><br />
                 <div id="TaskPanel" style="margin-left:50px;margin-right:10px;">
-                    <div class="easyui-panel" title="First Step: (Define Name and Test URL)"
+                    <div class="easyui-panel" title="First Step: (Define Task Type and Browser Type)"
                           data-options="iconCls:'icon-tip',collapsible:true,minimizable:false,maximizable:false,closable:false"
-                          style="width:1000px;height:230px;padding:5px;">
+                          style="width:1000px;height:200px;padding:5px;">
                         <div style="margin-left:10px;margin-top:10px;">
-                            <label style="font-size:13px;">Task Name:</label>
+                            <!--<label style="font-size:13px;">Task Name:</label>
                             
                             <div style="float:right; width:250px;height:120px;margin-right:40px;">
                                 <label style="font-size:13px;">Task Desc:</label>
                                 <br />
                                 <textarea style="margin-top:5px;width:230px;height:105px;border-radius:5px;border:1px solid #95B8E7;"
                                           placeholder="Describe your task..." cols="50" rows="4"></textarea>
+                            </div>-->
+                            <div style="float:right;margin-right:80px;">
+                                <label style="font-size:13px;">APP Upload:</label>
+                                <br />
+                                <input class="textbox" id="AppUploadText" style="margin-top:5px;width:350px;height:25px;" />
+                                <a href="#" id="AppUploadBtn" class="easyui-linkbutton" style="margin-top:5px;" data-options="iconCls:'icon-ok'">Upload</a>
                             </div>
-                            <div style="float:right; margin-right:40px;width:auto;">
+                            <div style="width:200px;">      
                                 <label style="font-size:13px;">Task Type:</label>
                                 <div style="margin-top:5px; border:1px solid #95B8E7;border-radius:5px; padding:3px;">
-                                    <a href=" #" class="easyui-linkbutton" data-options="toggle:true,group:'g2',plain:true">H5</a>
-                                    <a href="#" class="easyui-linkbutton" data-options="toggle:true,group:'g2',plain:true">APP</a>
-                                    <a href="#" class="easyui-linkbutton" data-options="toggle:true,group:'g2',plain:true">Hybrid</a>
+                                    <a href=" #" id="H5Button" class="easyui-linkbutton" data-options="toggle:true,group:'g1',plain:true">H5</a>
+                                    <a href="#" id="AppButton" class="easyui-linkbutton" data-options="toggle:true,group:'g1',plain:true">APP</a>
+                                    <a href="#" id="HybridButton" class="easyui-linkbutton" data-options="toggle:true,group:'g1',plain:true">Hybrid</a>
                                 </div>
                                 <br/>
                                 <label style="font-size:13px;">Browser Type:</label>
@@ -80,61 +86,66 @@
                             </div>
                            
                             <br/>
-                            <input class="textbox" style="margin-top:5px;width:200px;height:25px;text-wrap:normal" />
+                            <!--<input class="textbox" style="margin-top:5px;width:200px;height:25px;text-wrap:normal" />
                             <br /><br />
                             
                             <label style="font-size:13px;">Testing URL:</label>
                             <br />
                             <input class="textbox" style="margin-top:5px;width:350px;height:25px;" />
-                            <br /><br />
-                            <label style="font-size:13px;">APP Upload:</label>
-                            <br />
-                            <input class="textbox" style="margin-top:5px;width:350px;height:25px;" />
-                            <a href="#" class="easyui-linkbutton" style="margin-top:5px;" data-options="iconCls:'icon-ok'" style="width:80px">Upload</a>
+                            <br /><br />-->
+                            
                         </div>
                     </div>
                     <br />
                     <div class="easyui-panel"  title="Second Step: (Choose Test Type)"
                          data-options="iconCls:'icon-tip',collapsible:true,minimizable:false,maximizable:false,closable:false"
-                         style="width:1000px; height:170px;padding:5px;">
-                        <div style="float:right;margin-top:10px; margin-right:200px;width:300px;height:110px;">
-                            <h2 id="typeDetailTitle"></h2>
-                            <h4 id="typeDetailText"></h4>
+                         style="width:1000px; height:150px;padding:5px;">
+                        <div style="float:right;margin-top:10px; margin-right:200px;width:300px;height:80px;">
+                            <h2 id="typeDetailTitle">Function Testing</h2>
+                            <h4 id="typeDetailText">This is Function Testing....</h4>
                         </div>
                         <div id="cc" style="padding:10px;">
-                            <input type="radio" name="type" value="Test Type 1"><div style="margin-top:-16px;margin-left:22px;">Test Type 1</div><br/>
-                            <input type="radio" name="type" value="Test Type 2"><div style="margin-top:-16px;margin-left:22px;">Test Type 2</div><br />
-                            <input type="radio" name="type" value="Test Type 3"><div style="margin-top:-16px;margin-left:22px;">Test Type 3</div><br />
+                            <input type="radio" name="type" checked="checked" value="Function Testing"><div style="margin-top:-16px;margin-left:22px;">Function Testing</div><br/>
+                            <!--<input type="radio" name="type" value="Test Type 2"><div style="margin-top:-16px;margin-left:22px;">Test Type 2</div><br />
+                            <input type="radio" name="type" value="Test Type 3"><div style="margin-top:-16px;margin-left:22px;">Test Type 3</div><br />-->
                                 
                         </div>
                     </div>
                     <br />
                     <div class="easyui-panel" title="Third Step: (Choose Test Device)"
                          data-options="iconCls:'icon-tip',collapsible:true,minimizable:false,maximizable:false,closable:false"
-                         style="width:1000px;height:230px;padding:5px;">
+                         style="width:1000px;height:300px;padding:5px;">
+                        
                         <div class="phoneDiv" style="margin-top:10px;margin-left:10px;padding:10px; float:left">
-                            <img src="images/HTC.png" alt="HTC WildFire: Android 4.0" height="128" />
+                            <img src="images/HTC.png" alt="HTC,HC3CWW900629,Android,4.2.2" height="128" />
                             <div style="margin-left:20px;">HTC</div>
                      
                         </div>
                         <div class="phoneDiv" style="margin-top:10px;margin-left:10px; padding:10px;float:left">
-                            <img src="images/SamSung.png" alt="SamSung S3: Android 4.2" height="128" />
+                            <img src="images/SamSung.png" alt="SamSung,4d006ecd4bb141ed,Android,4.3" height="128" />
                             <div style="margin-left:5px;">SamSung</div>
      
                         </div>
                         <div class="phoneDiv" style="margin-top:10px;margin-left:10px;padding:10px; float:left">
-                            <img src="images/Xiaomi.png" alt="Xiao Mi 2: Android 4.4" height="128" />
-                            <div style="margin-left:7px;">Xiao MI</div>
+                            <img src="images/Lenovo.png" alt="Lenovo,0123456789ABCDEF,Android,4.2.1" height="128" />
+                            <div style="margin-left:7px;">Lenovo</div>
                             
                         </div>
-                        <div class="phoneDetailDiv" style="font-size:13px;font-weight:bold; margin-top:25px;margin-right:350px; float:right">
+                        <div class="phoneDiv" style="margin-top:10px;margin-left:10px;padding:10px; float:left">
+                            <img src="images/HuaWei.png" alt="HuaWei,022BTF7N43042050,Android,4.2.2" height="128" />
+                            <div style="margin-left:7px;">HuaWei</div>
+
+                        </div>
+                        <div class="phoneDiv" style="margin-top:10px;margin-left:10px;padding:10px; float:left">
+                            <img src="images/itouch4.png" alt="iTouch,2b97f6cf7b2657588e3dac97e0e6d86876733d5b,iOS,6.0" height="128" />
+                            <div style="margin-left:7px;">iTouch 4</div>
+
+                        </div>
+                        <div class="phoneDetailDiv" style="font-size:13px;font-weight:bold; margin-top:20px;">
                             <div id="phoneDetailText">
-                               
+
                             </div>
                         </div>
-                        <!--<div class="phoneDiv" style="margin-top:15px;float:left;margin-left:-16px;">
-                            <img src="images/iphone.png" alt="iPhone" />
-                        </div>-->
                     </div>
                     <div style="position:absolute;right:30px; bottom:10px;">
                         <a href="#" class="easyui-linkbutton" id="SubmitBtn" data-options="iconCls:'icon-ok'">Sumbit</a>
